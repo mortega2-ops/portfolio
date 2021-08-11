@@ -1,0 +1,40 @@
+{% extends "portfolio_app/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center my-3">
+    <div class="col-5">
+        <img src="{% static 'portfolio_app/self_pic.jpg' %}" class="img-fluid">
+    </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+    <div class="col-md-9 text-center">
+        <h1 id="hometext" class="font-weight-bold">Mark Ortega II</h1> <br>
+        <h2>Developer 1, Catalyte</h2>
+    </div>
+</div>
+
+<h2 class="mt-5">Portfolio</h2>
+<hr>
+<div class="row">
+    {% for project in projects %}
+    <div class="col-lg-4 col-md-6 border border-warning">
+
+        {% if project.url %}
+        <a href="{{ project.url }}" target="_blank">
+            <img src="{{ project.image.url }}" class="img-fluid mb-2">
+            {% else %}
+            <img src="{{ project.image.url }}" class="img-fluid mb-2">
+            {% endif %}
+            <h4 class="text-center">{{ project.title }}</h4>
+        </a>
+        <p>{{ project.description }}</p>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

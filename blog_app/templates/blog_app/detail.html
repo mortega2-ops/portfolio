@@ -1,0 +1,17 @@
+{% extends "portfolio_app/base.html" %}
+
+{% load static %}
+
+{% load blog_extras %}
+
+{% block content %}
+
+<h2 class="text-center mt-5" id="blogdetailtitle">{{ blog.title }}</h2>
+
+<h5 class="text-center text-muted mb-5">{{ blog.date|date:'F jS Y' }}</h5>
+<div class="mx-auto" style="width: 75%;">
+    {{ blog.content|convert_markdown|safe }}
+</div>
+
+{% endblock %}
+

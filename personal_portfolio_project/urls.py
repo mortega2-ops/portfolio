@@ -21,7 +21,8 @@ from django.conf import settings
 from portfolio_app import portfolio_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('securelogin/', admin.site.urls),
     path('', portfolio_views.home, name='home'),
     path('blog/', include('blog_app.urls'), name='blog'),
     url(r'^markdownx/', include('markdownx.urls')),

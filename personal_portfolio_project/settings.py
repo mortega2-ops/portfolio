@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--!j5zjfa&m^82c7j6q)a&zqoviv1!^y+8=!bnd-n8&d7bhuxe4'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = ['personal-portfolio-env.eba-y2847ivq.us-west-2.elasticbeanstalk.com']
 
@@ -38,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_markdown2',
+    'admin_honeypot',
     'markdownx',
     'blog_app',
-    'portfolio_app'
+    'portfolio_app',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +53,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
+
+SESSION_EXPIRE_SECONDS = 3600 # 1 hour
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 
 ROOT_URLCONF = 'personal_portfolio_project.urls'
 

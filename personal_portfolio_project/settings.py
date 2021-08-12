@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['personal-portfolio-env.eba-y2847ivq.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['personal-portfolio-env.eba-dmmzmx7d.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
